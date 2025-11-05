@@ -20,14 +20,33 @@
                 {
                     case "1":
                         var session = new Session();
-                        Console.Write("Date (yyyy-mm-dd): ");
-                        session.Date = DateTime.Parse(Console.ReadLine());
-                        Console.Write("Duration (minutes): ");
-                        session.DurationMinutes = int.Parse(Console.ReadLine());
-                        Console.Write("Type: ");
-                        session.Type = Console.ReadLine();
-                        Console.Write("Notes: ");
-                        session.Notes = Console.ReadLine();
+                        session.Date = DateTime.Today;
+
+                        var exercises = ExerciseRepository.GetAvailableExercises();
+                        Console.WriteLine("Choose exercises for this session (comma-separated IDs):");
+                        foreach (var ex in exercises)
+                        {
+                            Console.WriteLine($"{ex.Id}. {ex.Name}");
+                        }
+
+                        var selectedIds = Console.ReadLine()
+                            .Split(',')
+                            .Select(id => int.Parse(id.Trim()))
+                            .ToList();
+
+                        foreach (var id in selectedIds)
+                        {
+                            var exercise = exercises.FirstOrDefault(e => e.Id == id);
+                            if (exercise != null)
+                            {
+                                var log = new ExerciseLog { Exercise = exercise };
+                                Console.Write($"Duration for {exercise.Name} (minutes): ");
+                                log.DurationMinutes = int.Parse(Console.ReadLine());
+                                Console.Write("Notes: ");
+                                log.Notes = Console.ReadLine();
+                                session.ExerciseLogs.Add(log);
+                            }
+                        }
                         manager.AddSession(session);
                         break;
 

@@ -9,13 +9,16 @@ namespace BoxLogProConsole
     public class Session
     {
         public DateTime Date { get; set; }
-        public int DurationMinutes { get; set; }
-        public string Type { get; set; } // e.g., "Sparring", "Bag Work"
-        public string Notes { get; set; }
+        public List<ExerciseLog> ExerciseLogs { get; set; } = new List<ExerciseLog>();
 
         public override string ToString()
         {
-            return $"{Date.ToShortDateString()} - {DurationMinutes} min - {Type} - {Notes}";
+            string summary = $"Session on {Date.ToShortDateString()}:\n";
+            foreach (var log in ExerciseLogs)
+            {
+                summary += $"- {log.Exercise.Name}: {log.DurationMinutes} min — {log.Notes}\n";
+            }
+            return summary;
         }
     }
 }
