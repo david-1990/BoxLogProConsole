@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoxLogProConsole", "BoxLogProConsole\BoxLogProConsole.csproj", "{7BB17CB1-BF3E-4F92-A70E-4A6A7CF19E56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BB17CB1-BF3E-4F92-A70E-4A6A7CF19E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BB17CB1-BF3E-4F92-A70E-4A6A7CF19E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BB17CB1-BF3E-4F92-A70E-4A6A7CF19E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BB17CB1-BF3E-4F92-A70E-4A6A7CF19E56}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20485C92-087E-4062-A877-D0DDA82CCE3C}
+	EndGlobalSection
+EndGlobal
