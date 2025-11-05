@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            var manager = new SessionManager();
             bool running = true;
 
             while (running)
@@ -18,9 +19,20 @@
                 switch (input)
                 {
                     case "1":
+                        var session = new Session();
+                        Console.Write("Date (yyyy-mm-dd): ");
+                        session.Date = DateTime.Parse(Console.ReadLine());
+                        Console.Write("Duration (minutes): ");
+                        session.DurationMinutes = int.Parse(Console.ReadLine());
+                        Console.Write("Type: ");
+                        session.Type = Console.ReadLine();
+                        Console.Write("Notes: ");
+                        session.Notes = Console.ReadLine();
+                        manager.AddSession(session);
                         break;
 
                     case "2":
+                        manager.ViewSessions();
                         break;
 
                     case "3":
