@@ -25,8 +25,8 @@ namespace BoxLogProConsole
                 return;
             }
 
-            Console.WriteLine("Logged Sessions:");
-            foreach (var session in sessions)
+            Console.WriteLine("📖 Your Boxing Sessions (sorted by date):");
+            foreach (var session in sessions.OrderByDescending(s => s.Date))
             {
                 Console.WriteLine(session);
             }
