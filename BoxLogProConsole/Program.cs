@@ -1,4 +1,6 @@
-﻿namespace BoxLogProConsole
+﻿using BoxLogProConsole;
+
+namespace BoxLogProConsole
 {
     internal class Program
     {
@@ -20,18 +22,17 @@
                 {
                     case "1":
                         var session = new Session();
-                        session.Date = DateTime.Today;
+                        session.Date = InputValidator.GetValidDate("Enter session date (yyyy-mm-dd):");
 
                         var exercises = ExerciseRepository.GetAvailableExercises();
-                        Console.WriteLine("Choose exercises for this session (comma-separated IDs):");
+                        Console.WriteLine("Choose exercises (comma-separated IDs):");
                         foreach (var ex in exercises)
-                        {
                             Console.WriteLine($"{ex.Id}. {ex.Name}");
-                        }
 
                         var selectedIds = Console.ReadLine()
                             .Split(',')
-                            .Select(id => int.Parse(id.Trim()))
+                            .Select(id => int.TryParse(id.Trim(), out int parsed) ? parsed : -1)
+                            .Where(id => id > 0)
                             .ToList();
 
                         foreach (var id in selectedIds)
@@ -40,8 +41,7 @@
                             if (exercise != null)
                             {
                                 var log = new ExerciseLog { Exercise = exercise };
-                                Console.Write($"Duration for {exercise.Name} (minutes): ");
-                                log.DurationMinutes = int.Parse(Console.ReadLine());
+                                log.DurationMinutes = InputValidator.GetValidInt($"Duration for {exercise.Name} (minutes):", 1, 180);
                                 Console.Write("Notes: ");
                                 log.Notes = Console.ReadLine();
                                 session.ExerciseLogs.Add(log);
